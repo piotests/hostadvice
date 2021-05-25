@@ -20,7 +20,7 @@ const setProcess = (child: typeof process) => {
 const router: express.Router = express.Router();
 
 /**
- * GET status
+ * GET task
  */
 router.get('/task', async ( _req: express.Request, res: express.Response ) => {
     const screenshotUrl: string = config.website_url;
@@ -30,7 +30,7 @@ router.get('/task', async ( _req: express.Request, res: express.Response ) => {
         redisClient.get(screenshotUrl, async (err, task) => {
             if (err) throw err;
 
-            if (!task) {
+            if (task) {
                 res.status(200).send(
                     `Screenshot taken for an address ${screenshotUrl} in the last 24 hours`
                 );
@@ -83,13 +83,20 @@ router.get('/task', async ( _req: express.Request, res: express.Response ) => {
             }
         });
     } catch(err) {
-        res.status(500).send({message: err.message});
+        res.status(500).send({
+            message: err.message
+        });
     }
 });
 
-// Mismatch URL
+/**
+ * Mismatch URL
+ */
 router.all('*', ( _req: express.Request, res: express.Response ) => {
-    res.status(404).send({ error: true, message: 'Check your URL please' });
+    res.status(404).send({ 
+        error: true, 
+        message: 'Check your URL please' 
+    });
 });
     
 export {  router, setProcess };
