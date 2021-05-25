@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "noImplicitAny": false,
+        "sourceMap": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "noUnusedLocals": true,
+        
+        "baseUrl": "./src",
+        "rootDir": "./",
+        "outDir": "./dist",
+        "esModuleInterop": true,
+        "strict": true
+    },
+    "compileOnSave": false,
+    // "include": [
+    //     "src/**/*.ts"
+    // ],
+    "exclude": [
+      "node_modules"
+    ]
+}
